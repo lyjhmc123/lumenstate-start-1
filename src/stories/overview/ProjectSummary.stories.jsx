@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
 import {
   DocumentTitle,
   PageContainer,
@@ -23,165 +24,301 @@ export default {
 
 export const Default = {
   render: () => {
+    const colorScheme = [
+      { name: 'Wall Tint White', hex: '#F5F2EE', usage: '라이트 배경' },
+      { name: '3800K White', hex: '#F2E9DA', usage: '라이트 보조 / 다크 텍스트' },
+      { name: 'Warm Black', hex: '#12100E', usage: '다크 배경' },
+      { name: '3800K Accent', hex: '#FFC66E', usage: '하이라이트 (링크/CTA/포커스)' },
+    ];
+
+    const functionalRequirements = [
+      { id: 'F-1', description: '히어로 3단계 루프 모션(낮/저녁/밤) - 이미지 간 크로스페이드, 점멸 금지' },
+      { id: 'F-2', description: '쇼케이스 타임라인 스크러버 - 슬라이더 조작 시 모션 소스 타임라인 시킹 및 상태 라벨(lux·K) 실시간 갱신' },
+      { id: 'F-3', description: 'Lazy-load - 카드 썸네일 지연 로딩, 3컷 사전 프리로드' },
+      { id: 'F-4', description: '다크모드 지원 - 배경/텍스트만 4색 스킴 내에서 전환' },
+    ];
+
     return (
       <>
         <DocumentTitle
-          title="Project Summary"
+          title="Lumenstate Project Summary"
           status="Available"
-          note="Starter Kit Basic overview and guidelines"
-          brandName="Design System"
-          systemName="Starter Kit"
+          note="브랜드 프로젝트 기획 문서"
+          brandName="Lumenstate"
+          systemName="Brand Website"
           version="1.0"
         />
         <PageContainer>
+          {/* 배경 & 문제정의 */}
           <Typography variant="h4" sx={ { fontWeight: 700, mb: 1 } }>
-            Starter Kit Basic
+            Lumenstate
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={ { fontStyle: 'italic', color: 'text.secondary', mb: 2 } }
+          >
+            "빛은 공간의 상태다."
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={ { mb: 4 } }>
-            React + MUI + Storybook 환경을 디자이너에게 마치 디자인 툴처럼 사용할 수 있도록 도와주는 개발 환경입니다.
+            현대 주거 공간에서 조명은 단순한 스위치가 아니라, 하루의 리듬(시간·환경)에 반응해
+            시력을 보호하고 무드를 조율해야 함. Lumenstate는 환경 반응형 조도/색온도 커브를 제안합니다.
           </Typography>
 
-          <SectionTitle title="핵심 목적" />
-          <Stack spacing={ 2 } sx={ { mb: 4 } }>
-            <Box>
-              <Typography variant="subtitle2" sx={ { fontWeight: 600 } }>
-                1. UI 컴포넌트 체계적 관리
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                재사용 가능한 컴포넌트를 Storybook으로 문서화
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="subtitle2" sx={ { fontWeight: 600 } }>
-                2. 디자인 톤 일관성 유지
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                색상, 타이포그래피, 스타일을 중앙에서 관리
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="subtitle2" sx={ { fontWeight: 600 } }>
-                3. 로직과 UI 분리
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                제품의 비즈니스 로직과 UI 디자인 작업을 명확히 분리
-              </Typography>
-            </Box>
-          </Stack>
+          <Divider sx={ { my: 4 } } />
 
-          <SectionTitle title="대상 사용자" />
-          <Stack direction="row" spacing={ 1 } sx={ { mb: 4 } }>
-            <Chip label="디자이너" variant="outlined" />
-            <Chip label="개발자" variant="outlined" />
+          {/* 목표 */}
+          <SectionTitle title="1. 목표 (Goals)" />
+          <Box component="ul" sx={ { pl: 2, mb: 4 } }>
+            <li>
+              <Typography variant="body2">
+                브랜드 메시지(철학)와 핵심 기능(환경 반응형 라이팅)을 명료하게 전달
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                제품 썸네일을 정면·평면·여백 중심 아트디렉션으로 일관되게 노출
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                낮/저녁/밤 시나리오를 직관적으로 체험시키고, 조도·색온도 개념을 이해시키는 인터랙션 제공
+              </Typography>
+            </li>
+          </Box>
+
+          {/* 비범위 */}
+          <SectionTitle title="2. 비범위 (Non-Goals)" />
+          <Box component="ul" sx={ { pl: 2, mb: 4 } }>
+            <li>
+              <Typography variant="body2" color="text.secondary">
+                커머스 결제/장바구니, 설치 상담 예약 등 트랜잭션 기능
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2" color="text.secondary">
+                상세 구성요소(앱·디바이스 설정) 편집 UI
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2" color="text.secondary">
+                실시간 센서 연동 (파일럿 단계에서 제외)
+              </Typography>
+            </li>
+          </Box>
+
+          {/* 타깃 사용자 */}
+          <SectionTitle title="3. 타깃 사용자" />
+          <Stack direction="row" spacing={ 1 } sx={ { mb: 2 } }>
+            <Chip label="홈 라이팅 민감 거주자" variant="outlined" size="small" />
+            <Chip label="디자인/브랜딩 민감 사용자" variant="outlined" size="small" />
           </Stack>
-          <Typography variant="body2" color="text.secondary" sx={ { mb: 4 } }>
-            디자이너는 Storybook을 통해 컴포넌트를 시각적으로 탐색하고 테스트하며,
-            개발자는 체계적인 컴포넌트 구조와 스타일 가이드를 활용하여 개발합니다.
+          <Box component="ul" sx={ { pl: 2, mb: 4 } }>
+            <li>
+              <Typography variant="body2" color="text.secondary">
+                서재/식탁/침실의 눈 피로·분위기 개선 니즈
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2" color="text.secondary">
+                미니멀 미감, 정면 아트 디렉션 선호
+              </Typography>
+            </li>
+          </Box>
+
+          {/* 핵심 가치 제안 */}
+          <SectionTitle title="4. 핵심 가치 제안" />
+          <Box
+            sx={ {
+              p: 3,
+              mb: 4,
+              backgroundColor: 'action.hover',
+              borderLeft: '4px solid',
+              borderColor: 'secondary.main',
+            } }
+          >
+            <Typography variant="body1" sx={ { fontWeight: 600, mb: 1 } }>
+              "빛은 공간의 상태다."
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              하루의 곡선을 따라 조도·색온도를 부드럽게 조율.
+              시력 보호·수면 위생·대화 품질 향상을 위한 장면 프리셋 제공.
+            </Typography>
+          </Box>
+
+          <Divider sx={ { my: 4 } } />
+
+          {/* IA / 섹션 범위 */}
+          <SectionTitle title="5. IA / 섹션 범위" />
+
+          {/* 히어로 */}
+          <Typography variant="subtitle1" sx={ { fontWeight: 600, mb: 1 } }>
+            5.1 히어로
           </Typography>
+          <Box component="ul" sx={ { pl: 2, mb: 3 } }>
+            <li>
+              <Typography variant="body2">
+                <strong>헤드라인:</strong> 빛은 공간의 상태다. (Light is the state of space.)
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>서브:</strong> 하루의 곡선을 따라 조도·색온도를 부드럽게 조율합니다.
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>비주얼:</strong> 정면·평면 배경 제품 이미지 + 3단계 크로스페이드 루프(낮→저녁→밤)
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>CTA:</strong> 제품 보기 / 하루 리듬 시연
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>모션:</strong> easeInOutSine, 600·900·1200ms
+              </Typography>
+            </li>
+          </Box>
 
-          <SectionTitle title="기술 스택" />
+          {/* 제품 쇼케이스 */}
+          <Typography variant="subtitle1" sx={ { fontWeight: 600, mb: 1 } }>
+            5.2 제품 쇼케이스
+          </Typography>
+          <Box component="ul" sx={ { pl: 2, mb: 4 } }>
+            <li>
+              <Typography variant="body2">
+                <strong>그리드:</strong> Desktop 3x2 / Mobile 2열
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>카드 구성:</strong> 썸네일(정면·평면) / 제품명 / 마감 태그 / 상태 라벨(lux·K)
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>컨트롤:</strong> 타임라인 스크러버 (0-1 구간 슬라이더로 모션 영상 타임라인 직접 조절)
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body2">
+                <strong>전환:</strong> 스크러버 이동 시 영상 프레임 시킹 및 조도·색온도 실시간 업데이트
+              </Typography>
+            </li>
+          </Box>
+
+          <Divider sx={ { my: 4 } } />
+
+          {/* 컬러 스킴 */}
+          <SectionTitle title="6. 컬러 스킴 (4색 한정)" />
+          <Typography variant="body2" color="text.secondary" sx={ { mb: 2 } }>
+            사이트 전반은 아래 4색만 사용. 그래디언트/글로우/블러 금지.
+          </Typography>
           <TableContainer sx={ { mb: 4 } }>
             <Table size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={ { fontWeight: 600 } }>기술</TableCell>
-                  <TableCell sx={ { fontWeight: 600 } }>버전</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>색상</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>컬러</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>Hex</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>용도</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                { colorScheme.map((color) => (
+                  <TableRow key={ color.name }>
+                    <TableCell>{ color.name }</TableCell>
+                    <TableCell>
+                      <Box
+                        sx={ {
+                          width: 24,
+                          height: 24,
+                          backgroundColor: color.hex,
+                          border: '1px solid',
+                          borderColor: 'divider',
+                        } }
+                      />
+                    </TableCell>
+                    <TableCell sx={ { fontFamily: 'monospace' } }>{ color.hex }</TableCell>
+                    <TableCell>{ color.usage }</TableCell>
+                  </TableRow>
+                )) }
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          {/* 라이트/다크 모드 */}
+          <Typography variant="subtitle2" sx={ { fontWeight: 600, mb: 1 } }>
+            모드별 적용
+          </Typography>
+          <TableContainer sx={ { mb: 4 } }>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={ { fontWeight: 600 } }>모드</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>배경</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>본문</TableCell>
+                  <TableCell sx={ { fontWeight: 600 } }>액센트</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell>React</TableCell>
-                  <TableCell sx={ { fontFamily: 'monospace' } }>19.x</TableCell>
+                  <TableCell>Light</TableCell>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>#F5F2EE</TableCell>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>#12100E</TableCell>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>#FFC66E</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>MUI (Material UI)</TableCell>
-                  <TableCell sx={ { fontFamily: 'monospace' } }>7.x</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Vite</TableCell>
-                  <TableCell sx={ { fontFamily: 'monospace' } }>7.x</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Storybook</TableCell>
-                  <TableCell sx={ { fontFamily: 'monospace' } }>10.x</TableCell>
+                  <TableCell>Dark</TableCell>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>#12100E</TableCell>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>#F2E9DA</TableCell>
+                  <TableCell sx={ { fontFamily: 'monospace' } }>#FFC66E</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
 
-          <SectionTitle title="중요 규칙" />
+          <Divider sx={ { my: 4 } } />
 
-          <Typography variant="subtitle2" sx={ { fontWeight: 600, mb: 1 } }>
-            컴포넌트 작성
-          </Typography>
-          <Box component="ul" sx={ { pl: 2, mb: 3 } }>
+          {/* 마이크로카피 */}
+          <SectionTitle title="7. 마이크로카피" />
+          <Box component="ul" sx={ { pl: 2, mb: 4 } }>
             <li>
-              <Typography variant="body2">모든 UI 컴포넌트는 MUI 기반으로 작성</Typography>
+              <Typography variant="body2">
+                <strong>CTA:</strong> 제품 보기 / 하루 리듬 시연
+              </Typography>
             </li>
             <li>
-              <Typography variant="body2">스타일링은 MUI의 <code>sx</code> prop 사용</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">컴포넌트는 독립적이고 재사용 가능하게 설계</Typography>
+              <Typography variant="body2">
+                <strong>상태 라벨 예시:</strong> 260 lx · 3200 K / 480 lx · 4400 K
+              </Typography>
             </li>
           </Box>
 
-          <Typography variant="subtitle2" sx={ { fontWeight: 600, mb: 1 } }>
-            스토리 작성
-          </Typography>
-          <Box component="ul" sx={ { pl: 2, mb: 3 } }>
-            <li>
-              <Typography variant="body2">모든 컴포넌트는 Storybook 스토리와 함께 작성</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">디자이너가 이해하기 쉬운 명확한 설명 포함</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">Props 변형을 시각적으로 확인할 수 있도록 구성</Typography>
-            </li>
-          </Box>
-
-          <Typography variant="subtitle2" sx={ { fontWeight: 600, mb: 1 } }>
-            디자인 시스템
-          </Typography>
-          <Box component="ul" sx={ { pl: 2, mb: 3 } }>
-            <li>
-              <Typography variant="body2">색상, 타이포그래피는 테마 파일에서 중앙 관리</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">일관된 spacing, elevation, borderRadius 적용</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">Style 섹션에서 디자인 토큰 문서화</Typography>
-            </li>
-          </Box>
-
-          <Typography variant="subtitle2" sx={ { fontWeight: 600, mb: 1 } }>
-            작업 분리 원칙
-          </Typography>
+          {/* 기능 요구사항 */}
+          <SectionTitle title="8. 기능 요구사항" />
           <TableContainer>
             <Table size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={ { fontWeight: 600 } }>레이어</TableCell>
+                  <TableCell sx={ { fontWeight: 600, width: 80 } }>ID</TableCell>
                   <TableCell sx={ { fontWeight: 600 } }>설명</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
-                  <TableCell>UI 레이어</TableCell>
-                  <TableCell>순수 프레젠테이션 컴포넌트 (로직 없음)</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>로직 레이어</TableCell>
-                  <TableCell>비즈니스 로직, 상태 관리, API 호출</TableCell>
-                </TableRow>
+                { functionalRequirements.map((req) => (
+                  <TableRow key={ req.id }>
+                    <TableCell sx={ { fontFamily: 'monospace', color: 'secondary.main' } }>
+                      { req.id }
+                    </TableCell>
+                    <TableCell>{ req.description }</TableCell>
+                  </TableRow>
+                )) }
               </TableBody>
             </Table>
           </TableContainer>
-          <Typography variant="caption" color="text.secondary" sx={ { mt: 1, display: 'block' } }>
-            Storybook에서는 UI 레이어만 다룹니다.
-          </Typography>
         </PageContainer>
       </>
     );
