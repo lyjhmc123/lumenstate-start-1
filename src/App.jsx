@@ -1,22 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppShell } from './components/navigation/AppShell';
-import { Page1, Page2, Page3 } from './pages';
+import { LandingPage } from './pages/LandingPage';
 
 /**
  * 메인 앱 레이아웃
  *
- * AppShell로 감싸진 기본 라우팅 구조.
+ * LandingPage를 메인으로 사용하는 라우팅 구조.
  */
 function AppLayout() {
   return (
-    <AppShell brandName="Brand">
-      <Routes>
-        <Route path="/" element={<Page1 />} />
-        <Route path="/page2" element={<Page2 />} />
-        <Route path="/page3" element={<Page3 />} />
-        <Route path="*" element={<Page1 />} />
-      </Routes>
-    </AppShell>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="*" element={<LandingPage />} />
+    </Routes>
   );
 }
 

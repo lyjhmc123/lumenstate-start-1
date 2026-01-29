@@ -84,8 +84,9 @@ const ProductCard = forwardRef(function ProductCard({
               height: 22,
               fontSize: '0.75rem',
               textTransform: 'capitalize',
-              bgcolor: 'primary.main',
-              color: 'primary.contrastText',
+              bgcolor: '#12100E',
+              color: '#F2E9DA',
+              borderRadius: 0,
             }}
           />
         )}
